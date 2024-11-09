@@ -73,6 +73,8 @@ function Home() {
                 if (data.code !== 1000) {
                     throw new Error(JSON.stringify(data));
                 }
+                console.log(data?.result);
+
                 setFolderList(data?.result?.items);
                 setTotalData(data?.result?.total);
                 setLoading(false);

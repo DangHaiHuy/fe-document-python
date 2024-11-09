@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../Button';
 import styles from './Header.module.css';
 import Search from '../Search';
@@ -7,16 +7,17 @@ import { memo, useContext } from 'react';
 import { Context } from '../../Context';
 
 function Header({ isAuthenticated }) {
+    const navigate = useNavigate();
     const contextValue = useContext(Context);
 
     const userDetails = isAuthenticated && contextValue ? contextValue.userDetails : null;
-    console.log(isAuthenticated)
+    console.log(isAuthenticated);
 
     return (
         <div className={styles.wrapper}>
             <div className="grid wide" style={{ height: '100%' }}>
                 <div className={styles.container}>
-                    <div>
+                    <div className={styles.header_logo} onClick={() => navigate('/document')}>
                         <img className={styles.logo} src={require('../../Assets/Images/document.svg').default}></img>
                     </div>
                     {isAuthenticated ? <Search></Search> : <></>}

@@ -113,13 +113,19 @@ function Book({ folder, kebabName }) {
                     <div className={styles.icon}>
                         <FontAwesomeIcon icon={faClock} />
                     </div>
-                    <p className={styles.name}>{folder.createAt}</p>
+                    <p className={styles.name}>
+                        {new Date(folder.create_at).toLocaleDateString('vi-VN', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric',
+                        })}
+                    </p>
                 </div>
                 <div className={styles.content}>
                     <div className={styles.icon}>
                         <img className={styles.avatar} src={folder.author.picture}></img>
                     </div>
-                    <p className={styles.name}>{`${folder.author.lastName} ${folder.author.firstName}`}</p>
+                    <p className={styles.name}>{`${folder.author.last_name} ${folder.author.first_name}`}</p>
                 </div>
                 <div className={styles.content}>
                     <div className={styles.icon}>
