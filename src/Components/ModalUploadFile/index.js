@@ -28,7 +28,7 @@ function ModalUploadFile({ modalUploadFile, setModalUploadFile, setToggleReload 
         try {
             setLoading(true);
             const request = {
-                firebaseId,
+                firebase_id: firebaseId,
                 name,
             };
             const accessToken = await getToken();
@@ -51,7 +51,7 @@ function ModalUploadFile({ modalUploadFile, setModalUploadFile, setToggleReload 
             setLoading(false);
         } catch (e) {
             const dataError = JSON.parse(e.message);
-            addMessage(false, dataError?.errMessage || dataError?.message);
+            addMessage(false, dataError?.error_message || dataError?.message);
             setLoading(false);
         }
     };
@@ -62,7 +62,7 @@ function ModalUploadFile({ modalUploadFile, setModalUploadFile, setToggleReload 
         }
         const firebaseId = v4();
         const name = fileUpload.name;
-        const pdfRef = ref(storage, `pdf/${firebaseId + name}`);
+        const pdfRef = ref(storage, `pdf_python/${firebaseId + name}`);
         uploadBytes(pdfRef, fileUpload)
             .then(() => {
                 asyncDatabase(name, firebaseId);

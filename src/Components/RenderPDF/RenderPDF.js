@@ -37,7 +37,7 @@ function RenderPDF() {
                 });
                 const data = await res.json();
                 if (data.code === 1000) {
-                    getDownloadURL(ref(storage, `pdf/${data?.result?.firebase_id}${data?.result?.name}`))
+                    getDownloadURL(ref(storage, `pdf_python/${data?.result?.firebase_id}${data?.result?.name}`))
                         .then((url) => {
                             const date = new Date(data?.result?.create_at);
 

@@ -45,7 +45,7 @@ function File() {
                         throw new Error(JSON.stringify(data));
                     }
                     if (list.length > 0) {
-                        const lastCreateAt = new Date(list[0].createAt);
+                        const lastCreateAt = new Date(list[0].create_at);
                         const now = new Date();
                         const timeDiff = now - lastCreateAt;
                         const seconds = Math.floor(timeDiff / 1000);
@@ -71,11 +71,11 @@ function File() {
                         setLastUpdate(timeAgoText);
                     }
                     setListFile(list);
-                    setCanUpdate(data?.result?.canUpdate);
+                    setCanUpdate(data?.result?.can_update);
                 })
                 .catch((e) => {
                     const dataError = JSON.parse(e.message);
-                    addMessage(false, dataError?.errMessage || dataError?.message);
+                    addMessage(false, dataError?.error_message || dataError?.message);
                 });
         };
         fetchData();
@@ -111,7 +111,7 @@ function File() {
             addMessage(true, data?.result?.result);
         } catch (e) {
             const dataError = JSON.parse(e.message);
-            addMessage(false, dataError?.errMessage || dataError?.message);
+            addMessage(false, dataError?.error_message || dataError?.message);
         }
     };
     const handleSubmitDeleteList = async (listDocument) => {
@@ -119,7 +119,7 @@ function File() {
             const accessToken = getToken();
             if (!accessToken) navigate('/login');
             const request = {
-                documentsId: listDocument,
+                documents_id: listDocument,
             };
             const res = await fetch(`${process.env.REACT_APP_API_URL}api/v1/file/document`, {
                 method: 'DELETE',
@@ -136,7 +136,7 @@ function File() {
             addMessage(true, data?.result?.result);
         } catch (e) {
             const dataError = JSON.parse(e.message);
-            addMessage(false, dataError?.errMessage || dataError?.message);
+            addMessage(false, dataError?.error_message || dataError?.message);
         }
     };
     const handleDeleteFolder = async (slug) => {
@@ -162,7 +162,7 @@ function File() {
             navigate('/document');
         } catch (e) {
             const dataError = JSON.parse(e.message);
-            addMessage(false, dataError?.errMessage || dataError?.message);
+            addMessage(false, dataError?.error_message || dataError?.message);
         }
     };
     return (
