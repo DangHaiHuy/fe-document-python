@@ -1,0 +1,51 @@
+.wrapper {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 50;
+    width: 400px;
+    position: fixed;
+}
+.container {
+    background-color: #f8f8f8;
+    height: 75px;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    animation: slide-left 0.5s ease;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 20%);
+}
+.container +.container{
+    margin-top: 10px;
+}
+.body {
+    flex: 1;
+    padding: 8px 0;
+}
+.iconWrapper {
+    width: 24px;
+    cursor: pointer;
+    height:100%;
+    display: flex;
+    align-items: center;
+}
+.message {
+    display: -webkit-box; /* Hiển thị như một hộp linh hoạt */
+    -webkit-box-orient: vertical; /* Thiết lập hộp linh hoạt theo hướng dọc */
+    overflow: hidden; /* Ẩn phần nội dung vượt quá chiều cao */
+    text-overflow: ellipsis; /* Thêm dấu "..." ở cuối khi văn bản bị cắt */
+    -webkit-line-clamp: 2; /* Giới hạn chỉ hiển thị 2 dòng */
+    line-height: 1.2; /* Chiều cao mỗi dòng */
+    max-height: calc(1.6em * 2); /* Giới hạn chiều cao tối đa dựa trên 2 dòng */
+    word-wrap: break-word; /* Ngắt dòng khi từ quá dài */
+}
+@keyframes slide-left {
+    from{
+        transform: translateX(100%);
+    }
+    to{
+        transform: translateX(0);
+    }
+}

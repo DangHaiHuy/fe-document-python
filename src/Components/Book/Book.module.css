@@ -1,0 +1,117 @@
+.box {
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid rgb(0 0 0 / 20%);
+    box-shadow: 0px 5px 10px #ccc;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 250px;
+    margin: auto;
+    background: linear-gradient(45deg, #ffffff 0%, #fefbf6 50%, #ffffff 100% /* Màu trắng */);
+
+    /* clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 80%, 80% 85%, 70% 70%, 60% 80%, 50% 60%, 40% 75%, 30% 65%, 20% 80%, 10% 75%, 0 85%); */
+}
+.margin {
+    display: flex;
+    justify-content: space-around;
+    height: 250px;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.subMargin {
+    border: 1px solid rgb(0 0 0 / 50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+    background-image: linear-gradient(
+        45deg,
+        #8b4513 0%,
+        /* Màu nâu */ #d2b48c 50%,
+        /* Màu vàng nhạt */ #8b4513 100% /* Màu nâu */
+    );
+}
+.header,
+.content {
+    display: flex;
+    align-items: center;
+}
+.header {
+    position: relative;
+    padding: 8px 12px;
+    background: linear-gradient(45deg, #d73535, #d94e3f 25%, #e5a14a 50%, #fffacd 75%);
+    filter: brightness(90%);
+}
+.header .name {
+    font-weight: 700;
+}
+.icon {
+    width: 24px;
+    flex-shrink: 0;
+    margin-left: 0;
+    display: flex;
+    align-items: center;
+}
+.content + .content {
+    margin-top: 12px;
+}
+
+.name {
+    display: -webkit-box; /* Hiển thị như một hộp linh hoạt */
+    -webkit-box-orient: vertical; /* Thiết lập hộp linh hoạt theo hướng dọc */
+    overflow: hidden; /* Ẩn phần nội dung vượt quá chiều cao */
+    text-overflow: ellipsis; /* Thêm dấu "..." ở cuối khi văn bản bị cắt */
+    -webkit-line-clamp: 2; /* Giới hạn chỉ hiển thị 2 dòng */
+    line-height: 1.2; /* Chiều cao mỗi dòng */
+    max-height: calc(1.6em * 2); /* Giới hạn chiều cao tối đa dựa trên 2 dòng */
+    word-wrap: break-word; /* Ngắt dòng khi từ quá dài */
+}
+.body {
+    padding: 12px 12px;
+}
+
+.btn {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    box-shadow: 2px 2px 5px #a7a1a1;
+}
+
+.avatar {
+    width: 16px;
+    height: 16px;
+    border-radius: 99999px;
+    border: 1px solid black;
+}
+.heart {
+    position: absolute;
+    bottom: 0;
+    left: 12px;
+    display: flex;
+    align-items: center;
+    bottom: 8px;
+    user-select: none;
+}
+.heart .iconHeart {
+    font-size: 25px;
+    margin-right: 8px;
+    cursor: pointer;
+    animation: pop-up 0.25s ease-in-out;
+}
+.heart .value {
+    font-size: 20px;
+    font-weight: 300;
+}
+.active {
+    color: var(--primary);
+}
+@keyframes pop-up {
+    from {
+        scale: 50%;
+    }
+    to {
+        scale: 100%;
+    }
+}

@@ -1,0 +1,80 @@
+.wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 20%);
+    z-index: 20;
+}
+.container {
+    width: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    position: fixed;
+    border-radius: 20px;
+    background-color: rgb(61, 60, 60);
+    padding: 24px;
+    max-width: 90%;
+    animation: slide-down 0.25s ease;
+}
+.header {
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 24px;
+}
+.body {
+    display: flex;
+    align-items: center;
+    margin-bottom: 36px;
+}
+.body .input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+    outline: none;
+    background-color: #ccc;
+}
+.input:focus {
+    background-color: #f8f8f8;
+}
+.content {
+    margin-right: 12px;
+    font-size: 18px;
+    color: var(--primary);
+}
+.submit {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.loading {
+    position: relative;
+}
+.spin {
+    animation: spinner;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes spinner {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes slide-down {
+    from {
+        top: 300px;
+        transform: translateY(-100%) translateX(-50%);
+    }
+    to {
+        top: 50%;
+        transform: translateY(-50%) translateX(-50%);
+    }
+}

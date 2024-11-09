@@ -1,0 +1,92 @@
+/* wrapper */
+.wrapper {
+    display: inline-block;
+    color: black;
+    line-height: 1.8rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    user-select: none;
+    background-color: transparent;
+    text-decoration: none;
+    text-align: center;
+}
+
+.wrapper + .wrapper {
+    margin-left: 8px;
+}
+
+.wrapper.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* size */
+.medium {
+    min-width: 100px;
+    padding: 9px 16px;
+}
+
+.small {
+    min-width: 88px;
+    padding: 4px 16px;
+}
+
+.big{
+    min-width:160px;
+    padding:14px 16px;
+}
+
+.primary {
+    background-color: var(--primary);
+    color:white;
+}
+
+.primary:hover{
+    background-color: var(--third-color);
+}
+
+.outline{
+    border:1px solid var(--primary);
+    color:var(--primary);
+    border-color: currentColor ;
+    background-color: #f8f8f8;
+}
+
+.outline:hover{
+    background-color: rgba(254,44,85,0.06);
+}
+
+.text{
+    background-color: transparent;
+    border: none;
+}
+
+.text:hover{
+    text-decoration: underline;
+}
+
+.rounded{
+    border-radius: 999px;
+    border: 1px solid rgba(22,24,35,0.12);
+    box-shadow: 2px solid rgb(0 0 0 / 6%);
+    background-color: white;
+}
+
+.rounded:hover{
+    border-color: rgba(22,24,35,0.2);
+    background-color: rgba(22,24,35,0.03);
+}
+
+.betweenIcon{
+    padding:0 4px;
+}
+
+.icon{
+    width: 2.4rem;
+    display: inline-block;
+    text-align: center;
+}

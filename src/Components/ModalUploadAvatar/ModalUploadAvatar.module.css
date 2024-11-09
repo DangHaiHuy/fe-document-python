@@ -1,0 +1,74 @@
+.wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 20%);
+    z-index: 20;
+}
+.container {
+    width: 700px;
+    max-width: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    position: fixed;
+    border-radius: 20px;
+    background-color: rgb(61, 60, 60);
+    padding: 24px;
+    max-width: 90%;
+    animation: slide-down 0.25s ease;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+@keyframes slide-down {
+    from {
+        top: 300px;
+        transform: translateY(-100%) translateX(-50%);
+    }
+    to {
+        top: 50%;
+        transform: translateY(-50%) translateX(-50%);
+    }
+}
+.avatarWrapper {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.avatar {
+    max-height: 70vh;
+    border: 1px solid var(--primary);
+}
+.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+.icon{
+    color:white;
+    font-size: 30px;
+}
+.inputBox {
+    margin-top: 24px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.inputFile {
+    background-color: #ccc;
+    padding: 8px;
+    width: 50%;
+    border-radius: 5px;
+    border: 1px solid var(--primary);
+}
+.btn {
+    margin-top: 24px;
+}

@@ -1,0 +1,45 @@
+.wrapper {
+    background-color: white;
+    position: absolute;
+    box-shadow: 2px 4px 5px rgba(0, 0, 0, 30%);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 350px;
+    z-index: 12;
+    overflow: hidden;
+    left:0;
+    top:calc(100% + 8px);
+}
+.item {
+    padding: 6px 12px;
+    cursor: pointer;
+}
+.item:hover {
+    background-color: #ccc;
+}
+.content {
+    display: -webkit-box; /* Hiển thị như một hộp linh hoạt */
+    -webkit-box-orient: vertical; /* Thiết lập hộp linh hoạt theo hướng dọc */
+    overflow: hidden; /* Ẩn phần nội dung vượt quá chiều cao */
+    text-overflow: ellipsis; /* Thêm dấu "..." ở cuối khi văn bản bị cắt */
+    -webkit-line-clamp: 1; /* Giới hạn chỉ hiển thị 2 dòng */
+    line-height: 1.6; /* Chiều cao mỗi dòng */
+    max-height: 1.6em; /* Giới hạn chiều cao tối đa dựa trên 2 dòng */
+    word-wrap: break-word; /* Ngắt dòng khi từ quá dài */
+    font-size: 1.6rem;
+}
+.footer{
+    border-top: 1px solid #ccc;
+    background-color: #f8f8f8;
+    padding: 0 12px;
+    color: #b0b0b0;
+}
+.link{
+    text-decoration: none;
+    color:inherit
+}
+@media (max-width:500px){
+    .wrapper{
+        width:250px;
+    }
+}

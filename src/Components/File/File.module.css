@@ -1,0 +1,75 @@
+.wrapper {
+    padding-top: 12px;
+    padding-bottom: 48px;
+    min-height: calc(100vh - 200px);
+    position: relative;
+}
+
+.box {
+    width: 100%;
+    height: 30px;
+    background-color: #f8f8f8;
+    padding: 0px 12px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 20%);
+    cursor: pointer;
+}
+.box:hover .name {
+    text-decoration: underline;
+}
+.listBtn{
+    display: flex;
+    margin: 8px 0 12px;
+}
+.content {
+    display: flex;
+    align-items: center;
+}
+.title {
+    flex: 1;
+}
+.name {
+    flex: 1;
+    display: -webkit-box; /* Hiển thị như một hộp linh hoạt */
+    -webkit-box-orient: vertical; /* Thiết lập hộp linh hoạt theo hướng dọc */
+    overflow: hidden; /* Ẩn phần nội dung vượt quá chiều cao */
+    text-overflow: ellipsis; /* Thêm dấu "..." ở cuối khi văn bản bị cắt */
+    -webkit-line-clamp: 1; /* Giới hạn chỉ hiển thị 2 dòng */
+    line-height: 1.2; /* Chiều cao mỗi dòng */
+    max-height: calc(1.6em); /* Giới hạn chiều cao tối đa dựa trên 2 dòng */
+    word-wrap: break-word; /* Ngắt dòng khi từ quá dài */
+}
+.delete {
+    width: 24px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.empty {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: rgba(0, 0, 0, 40%);
+}
+.lastUpdate {
+    color: rgba(0, 0, 0, 40%);
+}
+.container + .container {
+    margin-top: 12px;
+}
+.container {
+    display: flex;
+}
+.checkBox {
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;    
+}
+.check {
+    width: 15px;
+    height: 15px;
+    
+}
