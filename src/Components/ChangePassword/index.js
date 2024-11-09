@@ -24,8 +24,8 @@ function ChangePassword() {
         const accessToken = getToken();
         if (!accessToken) nav('/login');
         const dataRequest = {
-            oldPassword: currentPassword,
-            newPassword: newPassword,
+            old_password: currentPassword,
+            new_password: newPassword,
         };
         const res = await fetch(`${process.env.REACT_APP_API_URL}users/change-password`, {
             method: 'PUT',
@@ -39,11 +39,11 @@ function ChangePassword() {
         if (dataResponse.code === 1000) {
             addMessage(true, dataResponse?.result?.result);
         } else if (dataResponse.code === 1004) {
-            setErrorCurrentPassword(dataResponse?.errMessage);
+            setErrorCurrentPassword(dataResponse?.error_message);
         } else if (Array.isArray(dataResponse)) {
-            setErrorNewPassword(dataResponse[0]?.errMessage);
+            setErrorNewPassword(dataResponse[0]?.error_message);
         } else {
-            addMessage(false, dataResponse?.errMessage || dataResponse?.message);
+            addMessage(false, dataResponse?.error_message || dataResponse?.message);
         }
         setLoading(false);
     };

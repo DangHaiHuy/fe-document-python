@@ -35,8 +35,8 @@ function Profile() {
             try {
                 setLoading(true);
                 const dataRequest = {
-                    firstName: profile.firstName,
-                    lastName: profile.lastName,
+                    first_name: profile.firstName,
+                    last_name: profile.lastName,
                     dob: formatDateSubmit(profile.dob),
                     location: profile.location,
                     phone: profile.phone,
