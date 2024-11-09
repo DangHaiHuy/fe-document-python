@@ -3,7 +3,8 @@ import { privateRoutes, publicRoutes } from './Routes';
 import DefaultLayout from './Layout/DefaultLayout';
 import PrivateRoute from './Components/PrivateRoute';
 import NoLayOut from './Layout/NoLayout';
-import "react-image-crop/dist/ReactCrop.css";
+import 'react-image-crop/dist/ReactCrop.css';
+import ContextProvider from './Context/index';
 
 function App() {
     return (
@@ -29,7 +30,7 @@ function App() {
                             ></Route>
                         );
                     })}
-                    {privateRoutes.map((route,index) => {
+                    {privateRoutes.map((route, index) => {
                         let Layout = DefaultLayout;
                         if (route.layout) {
                             Layout = route.layout;
@@ -41,11 +42,13 @@ function App() {
                                 key={index}
                                 path={route.path}
                                 element={
-                                    <PrivateRoute layout={Layout}>
-                                        {/* <Layout> */}
+                                    // <PrivateRoute layout={Layout}>
+                                    <ContextProvider isAuthenticated={true}>
+                                        <Layout isAuthenticated={true}>
                                             <route.component />
-                                        {/* </Layout> */}
-                                    </PrivateRoute>
+                                        </Layout>
+                                    </ContextProvider>
+                                    // </PrivateRoute>
                                 }
                             ></Route>
                         );

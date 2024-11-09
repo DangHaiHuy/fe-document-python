@@ -17,18 +17,6 @@ function Login() {
         toastContextValue?.toastRef?.current?.addMessage(isSuccess, message);
     };
 
-    const handleContinueWithGoogle = () => {
-        const callbackUrl = OAuthConfig.redirectUri;
-        const authUrl = OAuthConfig.authUri;
-        const googleClientId = OAuthConfig.clientId;
-
-        const targetUrl = `${authUrl}?redirect_uri=${encodeURIComponent(
-            callbackUrl,
-        )}&response_type=code&client_id=${googleClientId}&scope=openid%20email%20profile`;
-
-        window.location.href = targetUrl;
-    };
-
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errorUsername, setErrorUsername] = useState('');
@@ -37,39 +25,29 @@ function Login() {
 
     const handleLogin = (e) => {
         setLoading(true);
-        const data = {
-            username,
-            password,
-        };
+        const data = new URLSearchParams();
+        data.append('username', username);
+        data.append('password', password);
 
         fetch(`${process.env.REACT_APP_API_URL}auth/token`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: JSON.stringify(data),
+            body: data.toString(),
         })
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
                 if (data.code !== 1000) throw new Error(JSON.stringify(data));
-                setToken(data.result?.token);
+                setToken(data.result?.access_token);
                 navigate('/document');
                 setLoading(false);
             })
             .catch((error) => {
                 const dataError = JSON.parse(error.message);
-                if (Array.isArray(dataError)) {
-                    dataError.forEach((e) => {
-                        if (e.message === 'username') setErrorUsername(e.errMessage);
-                        else if (e.message === 'password') setErrorPassword(e.errMessage);
-                    });
-                } else {
-                    if (dataError.code === 1006) setErrorPassword(dataError.errMessage || dataError.message);
-                    else if (dataError.code === 1005) setErrorUsername(dataError.errMessage || dataError.message);
-                    else addMessage(false, dataError.errMessage || dataError.message);
-                }
+                addMessage(false, dataError.error_message || dataError.message);
                 setLoading(false);
             });
     };
@@ -145,11 +123,7 @@ function Login() {
                     >
                         Login
                     </Button>
-                    <Button outline size="big" className={styles.submit} onClick={handleContinueWithGoogle}>
-                        <FontAwesomeIcon icon={faGoogle} className={styles.icon}></FontAwesomeIcon>
-                        Sign in with Google
-                    </Button>
-                    <Button to="/register" primary size="big" className={styles.submit}>
+                    <Button to="/register" primary size="big" className={styles.submit} outline>
                         Register
                     </Button>
                 </div>

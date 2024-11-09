@@ -21,19 +21,8 @@ function Avatar({ userDetails }) {
         if (!token) {
             nav('/login');
         }
-        const data = {
-            token,
-        };
-        fetch(`${process.env.REACT_APP_API_URL}auth/logout`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        }).then(() => {
-            logOut();
-            window.location.href = '/';
-        });
+        logOut();
+        window.location.href = '/';
     };
     useEffect(() => {
         if (isMenuOpen) {

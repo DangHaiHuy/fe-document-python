@@ -40,7 +40,7 @@ function ForgetPassword() {
             } else throw new Error(JSON.stringify(data));
         } catch (error) {
             const errorData = JSON.parse(error.message);
-            setErrorUsername(errorData?.errMessage || errorData?.message);
+            setErrorUsername(errorData?.error_message || errorData?.message);
             setIsCheckUser(false);
             setLoading(false);
         }
@@ -72,7 +72,7 @@ function ForgetPassword() {
             setLoadingSendEmail(false);
         } catch (error) {
             const errorData = JSON.parse(error.message);
-            addMessage(false, errorData?.errMessage || errorData?.message);
+            addMessage(false, errorData?.error_message || errorData?.message);
             setLoadingSendEmail(false);
         }
     };
@@ -80,7 +80,8 @@ function ForgetPassword() {
         try {
             setLoading(true);
             const request = {
-                otpCode,
+                otp_code: otpCode,
+                username,
             };
             const res = await fetch(`${process.env.REACT_APP_API_URL}api/v1/otp/check-otp/${username}`, {
                 method: 'POST',
@@ -97,7 +98,7 @@ function ForgetPassword() {
             setLoading(false);
         } catch (error) {
             const errorData = JSON.parse(error.message);
-            setErrorOtpCode(errorData?.errMessage || errorData?.message);
+            setErrorOtpCode(errorData?.error_message || errorData?.message);
             setIsCheckOtp(false);
             setLoading(false);
         }
@@ -106,9 +107,9 @@ function ForgetPassword() {
         try {
             setLoading(true);
             const request = {
-                otpCode,
+                otp_code: otpCode,
                 username,
-                newPassword,
+                new_password: newPassword,
             };
             const res = await fetch(`${process.env.REACT_APP_API_URL}users/reset-password`, {
                 method: 'PUT',
@@ -123,13 +124,7 @@ function ForgetPassword() {
             setLoading(false);
         } catch (error) {
             const errorData = JSON.parse(error.message);
-            if (Array.isArray(errorData)) {
-                if (errorData.length > 0) {
-                    if ((errorData[0].message = 'password')) setErrorNewPassword(errorData[0].errMessage);
-                }
-            } else {
-                addMessage(false, errorData?.errMessage || errorData?.message);
-            }
+            addMessage(false, errorData?.error_message || errorData?.message);
             setLoading(false);
         }
     };

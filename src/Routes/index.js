@@ -1,5 +1,4 @@
 import About from '../Components/About';
-import Activate from '../Components/Activate';
 import Authenticate from '../Components/Authenticate';
 import ChangePassword from '../Components/ChangePassword';
 import File from '../Components/File';
@@ -17,8 +16,6 @@ const publicRoutes = [
     { path: '/login', component: Login, layout: null },
     { path: '/authenticate', component: Authenticate, layout: null },
     { path: '/register', component: Register, layout: null },
-    { path: '/activate/:email/:code', component: Activate, layout: null },
-    { path: '/activate', component: Activate, layout: null },
     { path: '/forget-password', component: ForgetPassword, layout: null },
 ];
 const privateRoutes = [

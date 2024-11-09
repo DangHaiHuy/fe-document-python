@@ -10,6 +10,7 @@ function Header({ isAuthenticated }) {
     const contextValue = useContext(Context);
 
     const userDetails = isAuthenticated && contextValue ? contextValue.userDetails : null;
+    console.log(isAuthenticated)
 
     return (
         <div className={styles.wrapper}>

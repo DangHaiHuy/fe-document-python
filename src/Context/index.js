@@ -36,7 +36,18 @@ function ContextProvider({ children, isAuthenticated }) {
             });
             const data = await response.json();
             if (data.code !== 1000) addMessage(false, data?.errMessage || data?.message);
-            else setUserDetails(data.result);
+            else
+                setUserDetails({
+                    id: data.result.id,
+                    username: data.result.username,
+                    firstName: data.result.first_name,
+                    lastName: data.result.last_name,
+                    dob: data.result.dob,
+                    picture: data.result.picture,
+                    location: data.result.location,
+                    phone: data.result.phone,
+                    email: data.result.email,
+                });
         };
         isAuthenticated && getUserDetails(accessToken);
     }, [toggleReloadContext]);

@@ -13,12 +13,9 @@ function Register() {
     const [email, setEmail] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [errorUsername, setErrorUsername] = useState('');
-    const [errorPassword, setErrorPassword] = useState('');
+
     const [errorConfirmPassword, setErrorConfirmPassword] = useState('');
-    const [errorEmail, setErrorEmail] = useState('');
-    const [errorFirstName, setErrorFirstName] = useState('');
-    const [errorLastName, setErrorLastName] = useState('');
+
     const toastContextValue = useContext(ToastContext);
     const addMessage = (isSuccess, message) => {
         toastContextValue?.toastRef?.current?.addMessage(isSuccess, message);
@@ -35,8 +32,8 @@ function Register() {
                 username,
                 password,
                 email,
-                firstName,
-                lastName,
+                first_name: firstName,
+                last_name: lastName,
             };
             const res = await fetch(`${process.env.REACT_APP_API_URL}users`, {
                 method: 'POST',
@@ -54,23 +51,7 @@ function Register() {
             addMessage(true, 'Register successfully');
         } catch (e) {
             const dataError = JSON.parse(e.message);
-            if (Array.isArray(dataError))
-                dataError.forEach((error) => {
-                    if (error.message === 'email') {
-                        setErrorEmail(error.errMessage);
-                    } else if (error.message === 'username') {
-                        setErrorUsername(error.errMessage);
-                    } else if (error.message === 'password') {
-                        setErrorPassword(error.errMessage);
-                    } else if (error.message === 'firstName') {
-                        setErrorFirstName(error.errMessage);
-                    } else if (error.message === 'lastName') {
-                        setErrorLastName(error.errMessage);
-                    }
-                });
-            else {
-                addMessage(false, dataError.errMessage);
-            }
+            addMessage(false, dataError.error_message);
             setLoading(false);
         }
     };
@@ -89,11 +70,9 @@ function Register() {
                                 placeholder="Username"
                                 value={username}
                                 onChange={(e) => {
-                                    setErrorUsername('');
                                     setUsername(e.target.value);
                                 }}
                             />
-                            {errorUsername && <span style={{ color: 'red', fontSize: '1.4rem' }}>{errorUsername}</span>}
                         </div>
                     </div>
 
@@ -106,11 +85,9 @@ function Register() {
                                 placeholder="Password"
                                 value={password}
                                 onChange={(e) => {
-                                    setErrorPassword('');
                                     setPassword(e.target.value);
                                 }}
                             />
-                            {errorPassword && <span style={{ color: 'red', fontSize: '1.4rem' }}>{errorPassword}</span>}
                         </div>
                     </div>
                     <div className={styles.content}>
@@ -126,9 +103,7 @@ function Register() {
                                     setConfirmPassword(e.target.value);
                                 }}
                             />
-                            {errorConfirmPassword && (
-                                <span style={{ color: 'red', fontSize: '1.4rem' }}>{errorConfirmPassword}</span>
-                            )}
+                            <span style={{ color: 'red', fontSize: '1.4rem' }}>{errorConfirmPassword}</span>
                         </div>
                     </div>
                     <div className={styles.content}>
@@ -140,11 +115,9 @@ function Register() {
                                 placeholder="Email"
                                 value={email}
                                 onChange={(e) => {
-                                    setErrorEmail('');
                                     setEmail(e.target.value);
                                 }}
                             />
-                            {errorEmail && <span style={{ color: 'red', fontSize: '1.4rem' }}>{errorEmail}</span>}
                         </div>
                     </div>
 
@@ -158,13 +131,9 @@ function Register() {
                                     placeholder="Last name"
                                     value={lastName}
                                     onChange={(e) => {
-                                        setErrorLastName('');
                                         setLastName(e.target.value);
                                     }}
                                 />
-                                {errorLastName && (
-                                    <span style={{ color: 'red', fontSize: '1.4rem' }}>{errorLastName}</span>
-                                )}
                             </div>
                             <div style={{ flex: '1', display: 'flex', flexDirection: 'column', minWidth: '50px' }}>
                                 <input
@@ -173,13 +142,9 @@ function Register() {
                                     placeholder="First name"
                                     value={firstName}
                                     onChange={(e) => {
-                                        setErrorFirstName('');
                                         setFirstName(e.target.value);
                                     }}
                                 />
-                                {errorFirstName && (
-                                    <span style={{ color: 'red', fontSize: '1.4rem' }}>{errorFirstName}</span>
-                                )}
                             </div>
                         </div>
                     </div>

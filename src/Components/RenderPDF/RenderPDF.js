@@ -37,9 +37,9 @@ function RenderPDF() {
                 });
                 const data = await res.json();
                 if (data.code === 1000) {
-                    getDownloadURL(ref(storage, `pdf/${data?.result?.firebaseId}${data?.result?.name}`))
+                    getDownloadURL(ref(storage, `pdf/${data?.result?.firebase_id}${data?.result?.name}`))
                         .then((url) => {
-                            const date = new Date(data?.result?.createAt);
+                            const date = new Date(data?.result?.create_at);
 
                             const day = date.getDate(); // Ngày
                             const month = date.getMonth() + 1;
@@ -60,7 +60,7 @@ function RenderPDF() {
                 }
             } catch (e) {
                 const dataError = JSON.parse(e);
-                addMessage(false, dataError?.errMessage || dataError?.message);
+                addMessage(false, dataError?.error_message || dataError?.message);
             }
         };
         fetchData();
