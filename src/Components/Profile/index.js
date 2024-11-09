@@ -29,6 +29,8 @@ function Profile() {
     };
     const nav = useNavigate();
 
+    console.log(profile.dob);
+
     const handleSubmitForm = (e) => {
         e.preventDefault();
         const submit = async () => {
@@ -59,19 +61,7 @@ function Profile() {
                 addMessage(true, 'Submitted successfully');
             } catch (e) {
                 const dataError = JSON.parse(e.message);
-                if (Array.isArray(dataError)) {
-                    dataError.forEach((error) => {
-                        if (error.message === 'phone') {
-                            setErrorPhone(error.errMessage);
-                        } else if (error.message === 'email') {
-                            setErrorEmail(error.errMessage);
-                        } else if (error.message === 'dob') {
-                            setErrorDob(error.errMessage);
-                        }
-                    });
-                } else {
-                    addMessage(false, dataError?.errMessage || dataError?.message);
-                }
+                addMessage(false, dataError?.errMessage || dataError?.message);
             }
             setLoading(false);
         };
@@ -92,7 +82,10 @@ function Profile() {
             dateFormat: 'd/m/Y',
             position: 'below',
             maxDate: 'today',
-            defaultDate: profile.dob != null ? profile.dob.replace(/\//g, '-') : '', //chỉ nhận dd-mm-yyyy
+            defaultDate:
+                profile.dob != null
+                    ? profile.dob.split('-')[2] + '-' + profile.dob.split('-')[1] + '-' + profile.dob.split('-')[0]
+                    : '', //chỉ nhận dd-mm-yyyy
             onChange: (selectedDate) => {
                 setErrorDob('');
                 setProfile((prev) => ({
@@ -185,8 +178,9 @@ function Profile() {
                                         </label>
                                     </div>
                                     <input
+                                        disabled
                                         type="email"
-                                        className={styles.input}
+                                        className={`${styles.input} ${styles.disabled}`}
                                         placeholder="email"
                                         id="email"
                                         value={profile.email != null ? profile.email : ''}
@@ -249,7 +243,7 @@ function Profile() {
                                         className={styles.input}
                                         placeholder="birthday"
                                         id="datepicker"
-                                        value={profile.dob}
+                                        // value={profile.dob}
                                         readOnly
                                     ></input>
                                     {errorDob && <span className={styles.error}>{errorDob}</span>}

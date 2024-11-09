@@ -36,7 +36,7 @@ function ModalUploadAvatar({ avatar, setAvatar, setModalUploadAvatar, userId }) 
     const uploadImageToFirebase = async (blob) => {
         setLoading(true);
         const firebaseId = v4();
-        const storageRef = ref(storage, `images/${firebaseId}${nameFile}`);
+        const storageRef = ref(storage, `images_python/${firebaseId}${nameFile}`);
 
         try {
             const accessToken = getToken();
@@ -44,8 +44,8 @@ function ModalUploadAvatar({ avatar, setAvatar, setModalUploadAvatar, userId }) 
             const res = await uploadBytes(storageRef, blob);
             const linkUrl = await getDownloadURL(storageRef);
             const dataRequest = {
-                linkUrl,
-                namePictureFirebase: `${firebaseId}${nameFile}`,
+                link_url:linkUrl,
+                name_picture_firebase: `${firebaseId}${nameFile}`,
             };
             const response = await fetch(`${process.env.REACT_APP_API_URL}users/update-picture/${userId}`, {
                 method: 'PUT',
@@ -64,7 +64,7 @@ function ModalUploadAvatar({ avatar, setAvatar, setModalUploadAvatar, userId }) 
             setModalUploadAvatar(false);
         } catch (e) {
             const dataError = JSON.parse(e.message);
-            addMessage(false, dataError?.errMessage || dataError?.message);
+            addMessage(false, dataError?.error_message || dataError?.message);
         } finally {
             setLoading(false);
         }
