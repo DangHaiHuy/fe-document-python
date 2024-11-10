@@ -31,7 +31,7 @@ function PrivateRoute({ children, layout: Layout }) {
                 if (dataResponse.code === 1011) {
                     setIsAuthenticated(false);
                     removeToken();
-                    addMessage(false, dataResponse?.errMessage);
+                    addMessage(false, dataResponse?.error_message);
                     navigate('/activate');
                 } else if (dataResponse.code !== 1000) {
                     setIsAuthenticated(false);

@@ -43,7 +43,7 @@ function ModalCreateFolder({ modalCreateFolder, setModalCreateFolder, setToggleR
             addMessage(true, 'Created successfully');
         } catch (e) {
             const dataError = JSON.parse(e.message);
-            addMessage(false, dataError?.errMessage || dataError?.message);
+            addMessage(false, dataError?.error_message || dataError?.message);
             setLoading(false);
         }
     };

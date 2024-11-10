@@ -35,7 +35,7 @@ function ContextProvider({ children, isAuthenticated }) {
                 },
             });
             const data = await response.json();
-            if (data.code !== 1000) addMessage(false, data?.errMessage || data?.message);
+            if (data.code !== 1000) addMessage(false, data?.error_message || data?.message);
             else
                 setUserDetails({
                     id: data.result.id,
