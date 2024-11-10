@@ -40,7 +40,7 @@ function Search() {
                 setListSearch(data?.result?.items);
                 setTotalData(data?.result?.total);
             } else {
-                addMessage(false, data?.errMessage || data?.message);
+                addMessage(false, data?.error_message || data?.message);
             }
             setLoading(false);
         };

@@ -60,7 +60,7 @@ function Book({ folder, kebabName }) {
                         setIsPending(false);
                     } catch (e) {
                         const dataError = JSON.parse(e.message);
-                        addMessage(false, dataError.errMessage || dataError.message);
+                        addMessage(false, dataError.error_message || dataError.message);
                         setToggleHeart((prev) => !prev);
                         setHeartValue((prev) => prev - 1);
                         setIsPending(false);
@@ -84,7 +84,7 @@ function Book({ folder, kebabName }) {
                         setIsPending(false);
                     } catch (e) {
                         const dataError = JSON.parse(e.message);
-                        addMessage(false, dataError.errMessage || dataError.message);
+                        addMessage(false, dataError.error_message || dataError.message);
                         setToggleHeart((prev) => !prev);
                         setHeartValue((prev) => prev + 1);
                         setIsPending(false);
