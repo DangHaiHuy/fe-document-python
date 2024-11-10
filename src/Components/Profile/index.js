@@ -75,7 +75,7 @@ function Profile() {
     };
     const formatDateSubmit = (dateStr) => {
         const [day, month, year] = dateStr.split('/');
-        return `${year}-${month}-${day}`;
+        return year == undefined ? dateStr : `${year}-${month}-${day}`;
     };
     useEffect(() => {
         const picker = flatpickr('#datepicker', {
