@@ -46,7 +46,7 @@ function Register() {
             if (data.code !== 1000) {
                 throw new Error(JSON.stringify(data));
             }
-            navigate('/document');
+            navigate('/login');
             setLoading(false);
             addMessage(true, 'Register successfully');
         } catch (e) {

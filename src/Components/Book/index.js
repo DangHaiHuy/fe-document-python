@@ -13,7 +13,7 @@ function Book({ folder, kebabName }) {
     const [toggleHeart, setToggleHeart] = useState(folder.liked);
     const [heartValue, setHeartValue] = useState(folder.star);
     const [fakeValueStarBe, setFakeValueStarBe] = useState(folder.star);
-    const heartValueDebounce = useDebounce(heartValue, 1000);
+    const heartValueDebounce = useDebounce(heartValue, 300);
     const [isDebounced, setIsDebounced] = useState(false); //để lần mount đầu không gọi api
     const [isPending, setIsPending] = useState(false);
     const toastContextValue = useContext(ToastContext);
