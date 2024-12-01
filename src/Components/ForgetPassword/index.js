@@ -5,6 +5,8 @@ import { faEnvelope, faKey, faLock, faPaperPlane, faSpinner, faUser } from '@for
 import Button from '../Button';
 import { ToastContext } from '../../Context/ToastContext';
 import clsx from 'clsx';
+import { getToken } from '../../Services/CookieService';
+import { useNavigate } from 'react-router-dom';
 
 function ForgetPassword() {
     const [username, setUsername] = useState('');
@@ -26,6 +28,8 @@ function ForgetPassword() {
     const addMessage = (isSuccess, message) => {
         toastContextValue?.toastRef?.current?.addMessage(isSuccess, message);
     };
+
+    const navigate = useNavigate();
     const handleSubmitUsername = async () => {
         try {
             setLoading(true);
@@ -128,6 +132,13 @@ function ForgetPassword() {
             setLoading(false);
         }
     };
+    useEffect(() => {
+        const accessToken = getToken();
+
+        if (accessToken) {
+            navigate('/document');
+        }
+    }, [navigate]);
     return (
         <>
             <div className={styles.wrapper}></div>

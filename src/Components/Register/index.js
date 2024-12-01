@@ -2,9 +2,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Register.module.css';
 import { faEnvelope, faIdBadge, faLock, faRotateRight, faSpinner, faUser } from '@fortawesome/free-solid-svg-icons';
 import Button from '../Button';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContext } from '../../Context/ToastContext';
+import { getToken } from '../../Services/CookieService';
 
 function Register() {
     const [username, setUsername] = useState('');
@@ -55,6 +56,13 @@ function Register() {
             setLoading(false);
         }
     };
+    useEffect(() => {
+        const accessToken = getToken();
+
+        if (accessToken) {
+            navigate('/document');
+        }
+    }, [navigate]);
     return (
         <>
             <div className={styles.wrapper}></div>
