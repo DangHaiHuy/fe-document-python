@@ -29,8 +29,6 @@ function Profile() {
     };
     const nav = useNavigate();
 
-    console.log(profile.dob);
-
     const handleSubmitForm = (e) => {
         e.preventDefault();
         const submit = async () => {
@@ -77,6 +75,7 @@ function Profile() {
         const [day, month, year] = dateStr.split('/');
         return year == undefined ? dateStr : `${year}-${month}-${day}`;
     };
+
     useEffect(() => {
         const picker = flatpickr('#datepicker', {
             dateFormat: 'd/m/Y',
@@ -84,7 +83,11 @@ function Profile() {
             maxDate: 'today',
             defaultDate:
                 profile.dob != null
-                    ? profile.dob.split('-')[2] + '-' + profile.dob.split('-')[1] + '-' + profile.dob.split('-')[0]
+                    ? profile.dob.split('-')[2] +
+                      '-' +
+                      profile.dob.split('-')[1] +
+                      '-' +
+                      profile.dob.split('-')[0]
                     : '', //chỉ nhận dd-mm-yyyy
             onChange: (selectedDate) => {
                 setErrorDob('');

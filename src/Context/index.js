@@ -42,7 +42,7 @@ function ContextProvider({ children, isAuthenticated }) {
                     username: data.result.username,
                     firstName: data.result.first_name,
                     lastName: data.result.last_name,
-                    dob: data.result.dob,
+                    dob: data.result.dob.split('T')[0],
                     picture: data.result.picture,
                     location: data.result.location,
                     phone: data.result.phone,
